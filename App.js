@@ -13,11 +13,11 @@ function MyStack() {
       <NavigationContainer>
         <Header />
         <Stack.Navigator>
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Home"
             component={HomeScreen}
             options={{ headerShown: false }}
-          /> */}
+          />
            <Stack.Screen
             name="OTPScreen"
             component={OtpScreen}
