@@ -36,20 +36,21 @@ export default Input;
 const styles = StyleSheet.create({
   container: {
     marginBottom: 9,
-    borderColor: "#E8E8E8",
+    borderColor: "#a6a6a6",
     borderWidth: 1,
     flexDirection: "row",
     borderRadius: 5,
     alignContent: "center",
     justifyContent: "center",
     maxWidth: "98%",
-    padding:3,
-    margin:100
+    padding: 3,
+    margin: 100,
+    marginTop: 30,
   },
   labelContainer: {
     flex: 1,
     justifyContent: "center",
-    padding:5
+    padding: 5,
   },
   text: {
     color: "#B5B7BD",
@@ -74,5 +75,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderColor: "#ff8566",
     borderWidth: 1,
-  }
-})
+  },
+});

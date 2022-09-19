@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     maxHeight:140,
     backgroundColor:'#407D6C',
+    paddingBottom:20
     
     
   },
@@ -27,8 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     color:'#ffffff',
     fontSize:23,
-    fontFamily: "notoserif",
-    fontWeight: "600",
+    fontWeight: "700",
     marginTop:60
     
   },

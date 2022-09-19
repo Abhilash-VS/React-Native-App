@@ -43,12 +43,12 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     maxWidth: "98%",
-    padding:3,
+    padding: 3,
   },
   labelContainer: {
     flex: 1,
     justifyContent: "center",
-    padding:5
+    padding: 5,
   },
   text: {
     color: "#B5B7BD",
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     textAlign: "center",
-    borderColor: "#ff8566",
+    borderColor: "#ff4405",
     borderWidth: 1,
-  }
-})
+  },
+});
