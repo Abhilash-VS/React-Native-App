@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     maxWidth: "98%",
     padding:3,
+    margin:100
   },
   labelContainer: {
     flex: 1,

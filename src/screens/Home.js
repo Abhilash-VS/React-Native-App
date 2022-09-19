@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, ScrollView,StyleSheet } from 'react-native';
 import Input from '../components/Input';
+import NextButton from '../Ui/NextButton';
 
 
 function HomeScreen() {
@@ -12,6 +13,8 @@ function HomeScreen() {
       <Input>Email</Input>
       <Input>Password</Input>
       <Input>Confirm Password</Input>
+      <Input>Phone Number</Input>
+      <NextButton/>
     </View>
     </ScrollView>
   );

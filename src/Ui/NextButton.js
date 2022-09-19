@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
         height: 45,
         backgroundColor: "#3385ff",
-        marginHorizontal: 5,
+        marginHorizontal:110,
         marginTop: 5,
-        borderRadius: 2,
+        borderRadius: 5,
         justifyContent: "center",
         alignItems: 'center',
         flexDirection: "row",
