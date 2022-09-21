@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   labelContainer: {
-    flex: 1,
+    flex: 1.7,
     justifyContent: "center",
     padding: 7,
   },

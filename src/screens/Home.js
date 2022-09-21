@@ -4,6 +4,7 @@
 /* eslint-disable react/jsx-no-undef */
 import * as React from "react";
 import { View, ScrollView, StyleSheet, Text, Image } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import NextButton from "../Ui/NextButton";
 
 function HomeScreen({ navigation, route }) {
@@ -12,42 +13,42 @@ function HomeScreen({ navigation, route }) {
   }
   return (
     <>
-      <ScrollView scrollEnabled={false}>
-        <View>
-          <View style={styles.homeScreen}>
-            <Text style={styles.text}>
-              you
-              <Text style={styles.highlight}>learn</Text>
-            </Text>
-          </View>
-          <View style={styles.imagecontainer}>
-            <Image source={require("../assets/img/page.png")} />
-          </View>
-
-          <View style={styles.view1}>
-            <Text style={styles.text2}>
-              Create brilliant learning {"\n"} pathways
-            </Text>
-            <Text style={styles.dot}>
-              ...<Text style={styles.highlight}>.</Text>
-            </Text>
-          </View>
-          <View style={styles.button}>
-            <NextButton onPress={NextHandler} />
-            <View style={styles.text3}>
-              <Text>
-                Have an account?{" "}
-                <Text
-                  style={styles.highlight}
-                  onPress={() => navigation.navigate("login")}
-                >
-                  Login
-                </Text>
+      <SafeAreaView style={styles.wrapper}>
+        <ScrollView scrollEnabled={false} style={styles.main}>
+            <View style={styles.homeScreen}>
+              <Text style={styles.text}>
+                you
+                <Text style={styles.highlight}>learn</Text>
               </Text>
             </View>
-          </View>
-        </View>
-      </ScrollView>
+            <View style={styles.imagecontainer}>
+              <Image source={require("../assets/img/page.png")} />
+            </View>
+
+            <View style={styles.view1}>
+              <Text style={styles.text2}>
+                Create brilliant learning {"\n"} pathways
+              </Text>
+              <Text style={styles.dot}>
+                ...<Text style={styles.highlight}>.</Text>
+              </Text>
+            </View>
+            <View style={styles.button}>
+              <NextButton onPress={NextHandler} />
+              <View style={styles.text3}>
+                <Text>
+                  Have an account?{" "}
+                  <Text
+                    style={styles.highlight}
+                    onPress={() => navigation.navigate("login")}
+                  >
+                    Login
+                  </Text>
+                </Text>
+              </View>
+            </View>
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 }
@@ -59,6 +60,9 @@ const styles = StyleSheet.create({
     margin: 12,
     flex: 1,
   },
+  wrapper:{
+    flex:1
+  },
   text: {
     color: "#090A0A",
     textAlign: "center",
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif",
     fontWeight: "900",
     margin: 10,
-    paddingTop: "26%",
+    paddingTop:20,
     fontWeight: "700",
     lineHeight: 36,
   },
@@ -85,10 +89,6 @@ const styles = StyleSheet.create({
     lineHeight: 36,
   },
   text3: {
-    // justifyContent: "center",
-    // alignItems: "center",
-    // paddingBottom: 30,
-    // marginBottom: 30,
     justifyContent: "center",
     alignItems: "center",
   },

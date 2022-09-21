@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import GetButton from "../Ui/GetButton";
 import Back from "../assets/img/Image.png";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function GetStarted({ navigation }) {
   function NextHandler() {
@@ -16,20 +17,24 @@ function GetStarted({ navigation }) {
   }
   return (
     <>
-      <View style={styles.view}>
-        <View style={styles.Textview}>
-          <Text style={styles.text1}>Keypy Yoga </Text>
-          <Text style={styles.text}>
-            Practice yoga {"\n"}whenever you want.
-          </Text>
-        </View>
-        <ImageBackground source={Back} resizeMode="cover" style={styles.image}>
-          <ScrollView>
-            <View style={styles.Screen} />
-          </ScrollView>
-          <GetButton onPress={NextHandler} style={styles.button} />
-        </ImageBackground>
-      </View>
+      <SafeAreaView style={styles.view}>
+          <View style={styles.Textview}>
+            <Text style={styles.text1}>Keypy Yoga </Text>
+            <Text style={styles.text}>
+              Practice yoga {"\n"}whenever you want.
+            </Text>
+          </View>
+          <ImageBackground
+            source={Back}
+            resizeMode="cover"
+            style={styles.image}
+          >
+            <ScrollView>
+              <View style={styles.Screen} />
+            </ScrollView>
+            <GetButton onPress={NextHandler} style={styles.button} />
+          </ImageBackground>
+      </SafeAreaView>
     </>
   );
 }
@@ -57,6 +62,7 @@ const styles = StyleSheet.create({
     marginBottom: "0%",
   },
   view: {
+    flex:1,
     backgroundColor: "#DAE2EB",
     width: "100%",
     height: "100%",
@@ -77,4 +83,5 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: 36,
   },
+
 });

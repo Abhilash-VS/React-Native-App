@@ -4,6 +4,7 @@
 /* eslint-disable react/jsx-no-undef */
 import * as React from "react";
 import { View, ScrollView, StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../components/Input";
 import BackButton from "../Ui/backArrow";
 import SignInButton from "../Ui/SignInButton";
@@ -14,33 +15,35 @@ function SignIn({ navigation, route }) {
   }
   return (
     <>
-      <ScrollView>
-        <View>
-          <View style={styles.homeScreen}>
-            <BackButton onPress={() => navigation.navigate("welcome")} />
-            <Text style={styles.text}> Sign In</Text>
+      <SafeAreaView style={styles.wrapper}>
+        <ScrollView>
+          <View>
+            <View style={styles.homeScreen}>
+              <BackButton onPress={() => navigation.navigate("welcome")} />
+              <Text style={styles.text}> Sign In</Text>
+            </View>
+            <View style={styles.imagecontainer}>
+              <Input>Email</Input>
+              <Input>Password</Input>
+              <Input>Email</Input>
+              <Input>Password</Input>
+              <Input>Email</Input>
+              <Input>Password</Input>
+            </View>
           </View>
-          <View style={styles.imagecontainer}>
-            <Input>Email</Input>
-            <Input>Password</Input>
-            <Input>Email</Input>
-            <Input>Password</Input>
-            <Input>Email</Input>
-            <Input>Password</Input>
-          </View>
-        </View>
 
-        <View style={styles.button}>
-          <View style={styles.text3}>
-            <Text style={styles.text2}>
-              By continuing, you agree to our{" "}
-              <Text style={styles.highlight}>Terms of Service</Text> and{"\n"}
-              <Text style={styles.highlight}>Privacy Policy.</Text>
-            </Text>
+          <View style={styles.button}>
+            <View style={styles.text3}>
+              <Text style={styles.text2}>
+                By continuing, you agree to our{" "}
+                <Text style={styles.highlight}>Terms of Service</Text> and{"\n"}
+                <Text style={styles.highlight}>Privacy Policy.</Text>
+              </Text>
+            </View>
+            <SignInButton />
           </View>
-          <SignInButton />
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 }
@@ -48,7 +51,6 @@ export default SignIn;
 
 const styles = StyleSheet.create({
   homeScreen: {
-    marginTop: 12,
     flex: 1,
     alignItems: "center",
     flexDirection: "row",
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "sans-serif",
     fontWeight: "400",
-    paddingTop: "16%",
+    paddingTop: "5%",
     fontWeight: "700",
     lineHeight: 36,
     marginRight: 188,
@@ -97,5 +99,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 110,
+  },
+  wrapper: {
+    flex: 1,
   },
 });

@@ -4,6 +4,7 @@
 /* eslint-disable react/jsx-no-undef */
 import * as React from "react";
 import { View, ScrollView, StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import RoundInput from "../components/RoundInput";
 import BackButton from "../Ui/backArrow";
 import ContinueButton from "../Ui/ContinueButton";
@@ -15,38 +16,40 @@ function AuthPage({ navigation, route }) {
   }
   return (
     <>
-      <ScrollView>
-        <View>
-          <View style={styles.homeScreen}>
-            <BackButton onPress={() => navigation.navigate("welcome")} />
-            <Text style={styles.text}> Change number</Text>
+      <SafeAreaView style={styles.wrapper}>
+        <ScrollView>
+          <View>
+            <View style={styles.homeScreen}>
+              <BackButton onPress={() => navigation.navigate("welcome")} />
+              <Text style={styles.text}> Change number</Text>
+            </View>
+            <View style={styles.homeScreen2}>
+              <Text style={styles.welcome}>Enter authentication code</Text>
+              <Text style={styles.log}>
+                Enter the 4-digit that we have sent via the
+              </Text>
+              <Text>
+                {" "}
+                phone number{" "}
+                <Text style={{ fontWeight: "bold" }}>+62 813-8172-5977</Text>
+              </Text>
+            </View>
+            <View style={styles.imagecontainer}>
+              <RoundInput></RoundInput>
+              <RoundInput></RoundInput>
+              <RoundInput></RoundInput>
+              <RoundInput></RoundInput>
+            </View>
           </View>
-          <View style={styles.homeScreen2}>
-            <Text style={styles.welcome}>Enter authentication code</Text>
-            <Text style={styles.log}>
-              Enter the 4-digit that we have sent via the
-            </Text>
-            <Text>
-              {" "}
-              phone number{" "}
-              <Text style={{ fontWeight: "bold" }}>+62 813-8172-5977</Text>
-            </Text>
-          </View>
-          <View style={styles.imagecontainer}>
-            <RoundInput></RoundInput>
-            <RoundInput></RoundInput>
-            <RoundInput></RoundInput>
-            <RoundInput></RoundInput>
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
 
-      <View style={styles.button}>
-        <ContinueButton />
-        <View style={styles.text3}>
-          <Text style={styles.highlight}>Resend code</Text>
+        <View style={styles.button}>
+          <ContinueButton />
+          <View style={styles.text3}>
+            <Text style={styles.highlight}>Resend code</Text>
+          </View>
         </View>
-      </View>
+      </SafeAreaView>
     </>
   );
 }
@@ -54,7 +57,6 @@ export default AuthPage;
 
 const styles = StyleSheet.create({
   homeScreen: {
-    marginTop: 12,
     flex: 1,
     alignItems: "center",
     flexDirection: "row",
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "sans-serif",
     fontWeight: "500",
-    paddingTop: "16%",
+    paddingTop: "5%",
     lineHeight: 36,
     marginRight: 24,
     color: "#6B4EFF",
@@ -133,5 +135,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginHorizontal: 24,
+  },
+  wrapper: {
+    flex: 1,
   },
 });

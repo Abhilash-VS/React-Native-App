@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginLeft: 20,
     justifyContent: "center",
-    marginTop: 60,
+    marginTop: 20,
   },
   image: {
     width: 25,

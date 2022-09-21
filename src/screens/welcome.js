@@ -7,6 +7,7 @@ import { View, ScrollView, StyleSheet, Text, Image } from "react-native";
 import Input from "../components/Input";
 import LoginButton from "../Ui/LoginButton";
 import BackButton from "../Ui/backArrow";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function HomeScreen({ navigation, route }) {
   function NextHandler() {
@@ -14,36 +15,41 @@ function HomeScreen({ navigation, route }) {
   }
   return (
     <>
-      <ScrollView>
-        <View>
-          <BackButton onPress={() => navigation.navigate("Home")} />
-          <View style={styles.homeScreen}>
-            <Text style={styles.text}>Welcome back.</Text>
-            <Text style={styles.log}>Log in to your account</Text>
-          </View>
-          <View style={styles.imagecontainer}>
-            <Input>Mobile Number</Input>
-          </View>
+      <SafeAreaView style={styles.wrapper}>
+        <ScrollView>
+          <View>
+            <BackButton onPress={() => navigation.navigate("Home")} />
+            <View style={styles.homeScreen}>
+              <Text style={styles.text}>Welcome back.</Text>
+              <Text style={styles.log}>Log in to your account</Text>
+            </View>
+            <View style={styles.imagecontainer}>
+              <Input keyboardType="number-pad">
+                <Text style={{ fontWeight: "400", color: "black" }}>+91 </Text>{" "}
+                Mobile Number
+              </Input>
+            </View>
 
-          <View style={styles.view1}>
-            <Text style={styles.text2}>
-              You will receive an SMS verification that may apply{"\n"}message
-              and data rates.
+            <View style={styles.view1}>
+              <Text style={styles.text2}>
+                You will receive an SMS verification that may apply{"\n"}message
+                and data rates.
+              </Text>
+            </View>
+          </View>
+        </ScrollView>
+        <View style={styles.button}>
+          <LoginButton onPress={NextHandler} />
+          <View style={styles.text3}>
+            <Text
+              style={styles.highlight}
+              onPress={() => navigation.navigate("Signin")}
+            >
+              Use email, instead
             </Text>
           </View>
         </View>
-      </ScrollView>
-      <View style={styles.button}>
-        <LoginButton onPress={NextHandler} />
-        <View style={styles.text3}>
-          <Text
-            style={styles.highlight}
-            onPress={() => navigation.navigate("Signin")}
-          >
-            Use email, instead
-          </Text>
-        </View>
-      </View>
+      </SafeAreaView>
     </>
   );
 }
@@ -98,5 +104,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 90,
+  },
+  wrapper: {
+    flex: 1,
   },
 });

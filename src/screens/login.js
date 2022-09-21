@@ -4,6 +4,7 @@
 /* eslint-disable react/jsx-no-undef */
 import * as React from "react";
 import { View, ScrollView, StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../components/Input";
 import Input2 from "../components/Input2";
 import BackButton from "../Ui/backArrow";
@@ -15,32 +16,34 @@ function HomeScreen({ navigation, route }) {
   }
   return (
     <>
-      <ScrollView>
-        <View>
-          <View style={styles.homeScreen}>
-            <BackButton onPress={() => navigation.navigate("welcome")} />
-            <Text style={styles.text}> Log in</Text>
-          </View>
-          <View style={styles.imagecontainer}>
-            <Input2>Email</Input2>
-            <Input>Password</Input>
-          </View>
+      <SafeAreaView style={styles.wrapper}>
+        <ScrollView>
+          <View>
+            <View style={styles.homeScreen}>
+              <BackButton onPress={() => navigation.navigate("welcome")} />
+              <Text style={styles.text}> Log in</Text>
+            </View>
+            <View style={styles.imagecontainer}>
+              <Input2>Email</Input2>
+              <Input>Password</Input>
+            </View>
 
-          <View style={styles.view1}>
-            <Text style={styles.highlight1}>Forgot password?</Text>
+            <View style={styles.view1}>
+              <Text style={styles.highlight1}>Forgot password?</Text>
+            </View>
           </View>
+        </ScrollView>
+        <View style={styles.button}>
+          <View style={styles.text3}>
+            <Text style={styles.text2}>
+              By continuing, you agree to our{" "}
+              <Text style={styles.highlight}>Terms of Service</Text> and{"\n"}
+              <Text style={styles.highlight}>Privacy Policy.</Text>
+            </Text>
+          </View>
+          <LoginButton />
         </View>
-      </ScrollView>
-      <View style={styles.button}>
-        <View style={styles.text3}>
-          <Text style={styles.text2}>
-            By continuing, you agree to our{" "}
-            <Text style={styles.highlight}>Terms of Service</Text> and{"\n"}
-            <Text style={styles.highlight}>Privacy Policy.</Text>
-          </Text>
-        </View>
-        <LoginButton />
-      </View>
+      </SafeAreaView>
     </>
   );
 }
@@ -48,7 +51,6 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   homeScreen: {
-    marginTop: 12,
     flex: 1,
     alignItems: "center",
     flexDirection: "row",
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "sans-serif",
     fontWeight: "400",
-    paddingTop: "16%",
+    paddingTop: "5%",
     lineHeight: 36,
     marginRight: 188,
   },
@@ -104,5 +106,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 90,
+  },
+  wrapper: {
+    flex: 1,
   },
 });
