@@ -2,17 +2,17 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import * as React from 'react';
-import {View, ScrollView, StyleSheet, Text, Image} from 'react-native';
-import NextButton from '../Ui/NextButton';
+import * as React from "react";
+import { View, ScrollView, StyleSheet, Text, Image } from "react-native";
+import NextButton from "../Ui/NextButton";
 
-function HomeScreen({navigation, route}) {
+function HomeScreen({ navigation, route }) {
   function NextHandler() {
-    navigation.navigate('welcome');
+    navigation.navigate("welcome");
   }
   return (
     <>
-      <ScrollView>
+      <ScrollView scrollEnabled={false}>
         <View>
           <View style={styles.homeScreen}>
             <Text style={styles.text}>
@@ -21,25 +21,37 @@ function HomeScreen({navigation, route}) {
             </Text>
           </View>
           <View style={styles.imagecontainer}>
-            <Image source={require('../assets/img/page.png')} />
+            <Image source={require("../assets/img/page.png")} />
           </View>
 
           <View style={styles.view1}>
             <Text style={styles.text2}>
-              Create brilliant learning {'\n'} pathways
+              Create brilliant learning {"\n"} pathways
+            </Text>
+            <Text style={styles.dot}>
+              ...<Text style={styles.highlight}>.</Text>
             </Text>
           </View>
-          <NextButton onPress={NextHandler} />
-          <View style={styles.text3}>
-            <Text>
-              Have an account? <Text style={styles.highlight}>Login</Text>
-            </Text>
+          <View style={styles.button}>
+            <NextButton onPress={NextHandler} />
+            <View style={styles.text3}>
+              <Text>
+                Have an account?{" "}
+                <Text
+                  style={styles.highlight}
+                  onPress={() => navigation.navigate("login")}
+                >
+                  Login
+                </Text>
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
     </>
   );
 }
+
 export default HomeScreen;
 
 const styles = StyleSheet.create({
@@ -48,39 +60,53 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text: {
-    color: '#090A0A',
-    textAlign: 'center',
-    justifyContent: 'center',
+    color: "#090A0A",
+    textAlign: "center",
+    justifyContent: "center",
     fontSize: 24,
-    fontFamily: 'sans-serif',
-    fontWeight: '900',
+    fontFamily: "sans-serif",
+    fontWeight: "900",
     margin: 10,
-    paddingTop: '26%',
-    fontWeight: '700',
+    paddingTop: "26%",
+    fontWeight: "700",
     lineHeight: 36,
   },
   imagecontainer: {
-    alignItems: 'center',
-    marginVertical:40,
+    alignItems: "center",
+    marginVertical: 40,
   },
   text2: {
-    color: '#090A0A',
-    textAlign: 'center',
-    justifyContent: 'center',
+    color: "#090A0A",
+    textAlign: "center",
+    justifyContent: "center",
     fontSize: 24,
-    fontFamily: 'sans-serif',
-    margin: 5,
-    fontWeight: '700',
+    fontFamily: "sans-serif",
+    fontWeight: "700",
     lineHeight: 36,
   },
   text3: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: "center",
+    // alignItems: "center",
+    // paddingBottom: 30,
+    // marginBottom: 30,
+    justifyContent: "center",
+    alignItems: "center",
   },
   view1: {
-    marginBottom: 80,
+    marginBottom: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
   highlight: {
-    color: '#6B4EFF',
+    color: "#6B4EFF",
+  },
+  dot: {
+    color: "#E3E5E5",
+    fontSize: 70,
+    fontWeight: "600",
+    margin: 0,
+  },
+  button: {
+    marginBottom: 114,
   },
 });

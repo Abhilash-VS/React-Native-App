@@ -1,10 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable quotes */
-import {StyleSheet, TextInput, View, Text, Pressable} from 'react-native';
+import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
 
 function Input({
   children,
-  keyBoardtype = 'default',
+  keyBoardtype = "default",
   onChange,
   isvalid,
   value,
@@ -37,43 +37,43 @@ function Input({
 export default Input;
 const styles = StyleSheet.create({
   container: {
-    borderColor: '#d9d9d9',
+    borderColor: "#d9d9d9",
     borderWidth: 1,
-    flexDirection: 'row',
+    flexDirection: "row",
     borderRadius: 8,
-    alignContent: 'center',
-    justifyContent: 'center',
-    maxWidth: '89%',
+    alignContent: "center",
+    justifyContent: "center",
+    maxWidth: "100%",
     padding: 3,
     marginVertical: 10,
   },
   labelContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 7,
   },
   text: {
-    color: '#B5B7BD',
-    fontWeight: '500',
+    color: "#B5B7BD",
+    fontWeight: "500",
     fontSize: 14,
   },
   inputContainer: {
     flex: 2,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   input: {
-    textAlign: 'right',
-    fontWeight: '600',
-    color: '#414141',
+    textAlign: "right",
+    fontWeight: "600",
+    color: "#414141",
     fontSize: 14,
-    width: '100%',
+    width: "100%",
     marginRight: 2,
   },
   errorText: {
-    textAlign: 'center',
-    borderColor: '#ff4405',
+    textAlign: "center",
+    borderColor: "#ff4405",
     borderWidth: 1,
   },
 });

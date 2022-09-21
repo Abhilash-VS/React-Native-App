@@ -2,39 +2,44 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import * as React from 'react';
-import {View, ScrollView, StyleSheet, Text} from 'react-native';
-import Input from '../components/Input';
-import LoginButton from '../Ui/LoginButton';
+import * as React from "react";
+import { View, ScrollView, StyleSheet, Text } from "react-native";
+import Input from "../components/Input";
+import Input2 from "../components/Input2";
+import BackButton from "../Ui/backArrow";
+import LoginButton from "../Ui/LoginButton";
 
-function HomeScreen({navigation, route}) {
+function HomeScreen({ navigation, route }) {
   function NextHandler() {
-    navigation.navigate('Home');
+    navigation.navigate("");
   }
   return (
     <>
       <ScrollView>
         <View>
           <View style={styles.homeScreen}>
-            <Text style={styles.text}>Log in</Text>
+            <BackButton onPress={() => navigation.navigate("welcome")} />
+            <Text style={styles.text}> Log in</Text>
           </View>
           <View style={styles.imagecontainer}>
-            <Input>Email</Input>
+            <Input2>Email</Input2>
             <Input>Password</Input>
           </View>
 
           <View style={styles.view1}>
-            <Text style={styles.highlight}>Forgot password?</Text>
+            <Text style={styles.highlight1}>Forgot password?</Text>
           </View>
         </View>
       </ScrollView>
       <View style={styles.button}>
         <View style={styles.text3}>
           <Text style={styles.text2}>
-            By continuing, you agree to our Terms of Service and Privacy Policy.
+            By continuing, you agree to our{" "}
+            <Text style={styles.highlight}>Terms of Service</Text> and{"\n"}
+            <Text style={styles.highlight}>Privacy Policy.</Text>
           </Text>
         </View>
-        <LoginButton onPress={NextHandler} />
+        <LoginButton />
       </View>
     </>
   );
@@ -45,53 +50,59 @@ const styles = StyleSheet.create({
   homeScreen: {
     marginTop: 12,
     flex: 1,
-    alignItems: 'center',
-    marginHorizontal: 24,
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   text: {
-    color: '#090A0A',
-    textAlign: 'center',
-    justifyContent: 'center',
+    color: "#090A0A",
+    textAlign: "center",
+    justifyContent: "center",
     fontSize: 18,
-    fontFamily: 'sans-serif',
-    fontWeight: '400',
-    paddingTop: '26%',
-    fontWeight: '700',
+    fontFamily: "sans-serif",
+    fontWeight: "400",
+    paddingTop: "16%",
     lineHeight: 36,
+    marginRight: 188,
   },
   imagecontainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 40,
-    marginVertical: 20,
+    marginHorizontal: 24,
   },
   text2: {
-    color: '#6C7072',
-    fontFamily: 'sans-serif',
+    color: "#6C7072",
+    fontFamily: "sans-serif",
     marginHorizontal: 24,
     fontSize: 14,
-    marginBottom:20,
+    marginBottom: 20,
+    fontWeight: "400",
   },
   text3: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   view1: {
     marginBottom: 80,
     marginTop: 0,
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
   },
-  highlight: {
-    color: '#6B4EFF',
+  highlight1: {
+    color: "#6B4EFF",
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
     marginHorizontal: 24,
     fontSize: 16,
+    fontWeight: "400",
+  },
+  highlight: {
+    color: "#6B4EFF",
   },
   log: {
     fontSize: 16,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   button: {
-    marginBottom: 114,
+    marginBottom: 90,
   },
 });

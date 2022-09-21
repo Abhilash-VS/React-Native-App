@@ -1,6 +1,8 @@
-import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
+import * as React from "react";
+import { TextInput } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
 
-function Input({
+const Input2 = ({
   children,
   keyBoardtype = "default",
   onChange,
@@ -11,69 +13,41 @@ function Input({
   textStyle,
   icon,
   isOpen,
-}) {
+}) => {
+  const [text, setText] = React.useState("");
+
   return (
     <View style={[styles.container, isvalid && styles.errorText, style]}>
-      <View style={[styles.labelContainer, textStyle]}>
-        <Text style={styles.text}>{children}</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          value={value}
-          style={styles.input}
-          keyboardType={keyBoardtype}
-          autoCapitalize={false}
-          autoCorrect={false}
-          onChangeText={onChange}
-          maxLength={max}
-        />
-        <Pressable onPress={isOpen}>{icon}</Pressable>
-      </View>
+      <TextInput
+        label="Email"
+        value={text}
+        onChangeText={(text) => setText(text)}
+        style={styles.Input2}
+      />
     </View>
   );
-}
-export default Input;
+};
+
+export default Input2;
+
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 9,
-    borderColor: "#a6a6a6",
+    borderColor: "#d9d9d9",
     borderWidth: 1,
     flexDirection: "row",
-    borderRadius: 5,
+    borderRadius: 8,
     alignContent: "center",
     justifyContent: "center",
-    maxWidth: "98%",
+    maxWidth: "100%",
     padding: 3,
-    margin: 100,
-    marginTop: 30,
+    marginVertical: 10,
   },
-  labelContainer: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 5,
-  },
-  text: {
-    color: "#B5B7BD",
-    fontWeight: "500",
-    fontSize: 14,
-  },
-  inputContainer: {
-    flex: 2,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  input: {
-    textAlign: "right",
-    fontWeight: "600",
-    color: "#414141",
-    fontSize: 14,
+  Input2: {
     width: "100%",
-    marginRight: 2,
-  },
-  errorText: {
-    textAlign: "center",
-    borderColor: "#ff8566",
-    borderWidth: 1,
+    opacity: 0.3,
+    flex: 1,
+    maxHeight: 50,
+    alignContent: "center",
+    justifyContent: "center",
   },
 });
