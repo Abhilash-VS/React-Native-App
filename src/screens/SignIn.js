@@ -3,15 +3,34 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
 import * as React from "react";
-import { View, ScrollView, StyleSheet, Text } from "react-native";
+import { View, ScrollView, StyleSheet, Text, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../components/Input";
 import BackButton from "../Ui/backArrow";
 import SignInButton from "../Ui/SignInButton";
+import auth from "@react-native-firebase/auth";
 
 function SignIn({ navigation, route }) {
-  function NextHandler() {
-    navigation.navigate("Home");
+  function signin() {
+    auth()
+      .createUserWithEmailAndPassword(
+        "abhilashsenapthy123@gmail.com",
+        "abhilash"
+      )
+      .then(() => {
+        Alert.alert("User account created & signed in!");
+      })
+      .catch((error) => {
+        if (error.code === "auth/email-already-in-use") {
+          Alert.alert("That email address is already in use!");
+        }
+
+        if (error.code === "auth/invalid-email") {
+          Alert.alert("That email address is invalid!");
+        }
+
+       Alert.alert(error);
+      });
   }
   return (
     <>
@@ -40,7 +59,7 @@ function SignIn({ navigation, route }) {
                 <Text style={styles.highlight}>Privacy Policy.</Text>
               </Text>
             </View>
-            <SignInButton />
+            <SignInButton onPress={signin}/>
           </View>
         </ScrollView>
       </SafeAreaView>

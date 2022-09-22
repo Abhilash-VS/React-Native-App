@@ -8,11 +8,19 @@ import Input from "../components/Input";
 import LoginButton from "../Ui/LoginButton";
 import BackButton from "../Ui/backArrow";
 import { SafeAreaView } from "react-native-safe-area-context";
+import auth from "@react-native-firebase/auth";
 
 function HomeScreen({ navigation, route }) {
-  function NextHandler() {
-    navigation.navigate("Authpage");
-  }
+
+    async function signInWithPhoneNumber(phoneNumber) {
+      const confirmation = await auth().signInWithPhoneNumber("+918157855367");
+      console.log(confirmation);
+      navigation.navigate("Authpage");
+    }
+  
+    
+ 
+
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
@@ -39,7 +47,7 @@ function HomeScreen({ navigation, route }) {
           </View>
         </ScrollView>
         <View style={styles.button}>
-          <LoginButton onPress={NextHandler} />
+          <LoginButton onPress={signInWithPhoneNumber} />
           <View style={styles.text3}>
             <Text
               style={styles.highlight}

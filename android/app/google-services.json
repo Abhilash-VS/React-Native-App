@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "912166501685",
+    "project_id": "otp-verification-88b88",
+    "storage_bucket": "otp-verification-88b88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912166501685:android:0216c836becf273657607c",
+        "android_client_info": {
+          "package_name": "com.loginapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912166501685-09dauvjml3qv58mi17u3j5jrhvj8l2st.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loginapp",
+            "certificate_hash": "63601ff161ad38afa33c9e006c048e6f13e42adb"
+          }
+        },
+        {
+          "client_id": "912166501685-m30ns7q2urq90fnlu9mrasag4n14g2dl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU7gELCvgHxE9puAGbu_4MHbEPuiIIT7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912166501685-m30ns7q2urq90fnlu9mrasag4n14g2dl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

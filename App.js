@@ -8,6 +8,7 @@ import login from "./src/screens/login";
 import GetStarted from "./src/screens/GetStarted";
 import SignIn from "./src/screens/SignIn";
 import AuthPage from "./src/screens/AuthPage";
+import Home2 from "./src/screens/Practice Area";
 const Stack = createNativeStackNavigator();
 
 function MyStack() {
@@ -44,6 +45,11 @@ function MyStack() {
           <Stack.Screen
             name="Authpage"
             component={AuthPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home2"
+            component={Home2}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

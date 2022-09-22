@@ -2,18 +2,52 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import * as React from "react";
 import { View, ScrollView, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import RoundInput from "../components/RoundInput";
 import BackButton from "../Ui/backArrow";
 import ContinueButton from "../Ui/ContinueButton";
 import LoginButton from "../Ui/LoginButton";
+import OTPInputView from "@twotalltotems/react-native-otp-input";
+import { useEffect, useState } from "react";
+import auth from "@react-native-firebase/auth";
+import RNOtpVerify from 'react-native-otp-verify';
 
 function AuthPage({ navigation, route }) {
-  function NextHandler() {
-    navigation.navigate("/");
+  const confirm = route.params;
+  const [code, setCode] = useState();
+
+  async function confirmCode() {
+    try {
+      await confirm.confirm(code);
+    } catch (error) {
+      console.log("Invalid code.");
+    }
+    navigation.navigate("Home2");
   }
+  function onAuthStateChanged(user) {
+    console.log(user)
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+  useEffect(()=>{
+    RNOtpVerify.getHash()
+    .then(console.log)
+    .catch(console.log);
+
+    RNOtpVerify.getOtp()
+    .then(p => RNOtpVerify.addListener(otpHandler))
+    .catch(p => console.log(p));
+  },[])
+
+  const otpHandler = (message = "000000") => {
+    const otp = /(\d{6})/g.exec(message)[1];
+    setCode( otp );
+    RNOtpVerify.removeListener();
+}
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
@@ -35,16 +69,23 @@ function AuthPage({ navigation, route }) {
               </Text>
             </View>
             <View style={styles.imagecontainer}>
-              <RoundInput></RoundInput>
-              <RoundInput></RoundInput>
-              <RoundInput></RoundInput>
-              <RoundInput></RoundInput>
+              <OTPInputView
+                style={styles.OTPInput}
+                pinCount={6}
+                code={code}
+                autoFocusOnLoad={true}
+                codeInputFieldStyle={styles.underlineStyleBase}
+                codeInputHighlightStyle={styles.underlineStyleHighLighted}
+                onCodeChanged={(value) => {
+                  setCode(value);
+                }}
+              />
             </View>
           </View>
         </ScrollView>
 
         <View style={styles.button}>
-          <ContinueButton />
+          <ContinueButton onPress={confirmCode} />
           <View style={styles.text3}>
             <Text style={styles.highlight}>Resend code</Text>
           </View>
@@ -139,4 +180,20 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
+  underlineStyleBase: {
+    width: 48,
+    borderRadius: 64,
+    height: 48,
+    borderWidth: 1,
+    color: "black",
+    borderColor: "#E3E5E5",
+  },
+
+  underlineStyleHighLighted: {
+    borderColor: "#6B4EFF",
+    width: 50,
+    borderRadius: 64,
+    height: 50,
+  },
+  OTPInput: { height: 100, width: "100%", backgroundColor: "transparent" },
 });
