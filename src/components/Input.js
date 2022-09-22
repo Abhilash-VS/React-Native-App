@@ -13,6 +13,8 @@ function Input({
   textStyle,
   icon,
   isOpen,
+  onText,
+  onChangeText,
 }) {
   return (
     <View style={[styles.container, isvalid && styles.errorText, style]}>
@@ -26,7 +28,7 @@ function Input({
           keyboardType={keyBoardtype}
           autoCapitalize={false}
           autoCorrect={false}
-          onChangeText={onChange}
+          onChangeText={onText}
           maxLength={max}
         />
         <Pressable onPress={isOpen}>{icon}</Pressable>
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   labelContainer: {
-    flex: 1.7,
+    flex: 2,
     justifyContent: "center",
     padding: 7,
   },

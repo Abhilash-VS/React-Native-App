@@ -18,22 +18,18 @@ function GetStarted({ navigation }) {
   return (
     <>
       <SafeAreaView style={styles.view}>
-          <View style={styles.Textview}>
-            <Text style={styles.text1}>Keypy Yoga </Text>
-            <Text style={styles.text}>
-              Practice yoga {"\n"}whenever you want.
-            </Text>
-          </View>
-          <ImageBackground
-            source={Back}
-            resizeMode="cover"
-            style={styles.image}
-          >
-            <ScrollView>
-              <View style={styles.Screen} />
-            </ScrollView>
-            <GetButton onPress={NextHandler} style={styles.button} />
-          </ImageBackground>
+        <View style={styles.Textview}>
+          <Text style={styles.text1}>Keypy Yoga </Text>
+          <Text style={styles.text}>
+            Practice yoga {"\n"}whenever you want.
+          </Text>
+        </View>
+        <ImageBackground source={Back} resizeMode="cover" style={styles.image}>
+          <ScrollView>
+            <View style={styles.Screen} />
+          </ScrollView>
+          <GetButton onPress={NextHandler} style={styles.button} />
+        </ImageBackground>
       </SafeAreaView>
     </>
   );
@@ -62,7 +58,7 @@ const styles = StyleSheet.create({
     marginBottom: "0%",
   },
   view: {
-    flex:1,
+    flex: 1,
     backgroundColor: "#DAE2EB",
     width: "100%",
     height: "100%",
@@ -70,6 +66,7 @@ const styles = StyleSheet.create({
   Textview: {
     alignContent: "center",
     justifyContent: "center",
+    marginTop: 0,
   },
   text1: {
     color: "#AFBCCB",
@@ -79,9 +76,8 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif",
     fontWeight: "900",
     margin: 10,
-    paddingTop: "26%",
+    paddingTop: "10%",
     fontWeight: "700",
     lineHeight: 36,
   },
-
 });

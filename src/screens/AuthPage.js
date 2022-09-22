@@ -2,7 +2,7 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import { View, ScrollView, StyleSheet, Text } from "react-native";
+import { View, ScrollView, StyleSheet, Text, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import RoundInput from "../components/RoundInput";
 import BackButton from "../Ui/backArrow";
@@ -11,7 +11,7 @@ import LoginButton from "../Ui/LoginButton";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { useEffect, useState } from "react";
 import auth from "@react-native-firebase/auth";
-import RNOtpVerify from 'react-native-otp-verify';
+import RNOtpVerify from "react-native-otp-verify";
 
 function AuthPage({ navigation, route }) {
   const confirm = route.params;
@@ -19,35 +19,40 @@ function AuthPage({ navigation, route }) {
 
   async function confirmCode() {
     try {
-      await confirm.confirm(code);
+      await confirm
+        .confirm(code)
+        .then((result) => navigation.navigate("Home2"))
+        .catch((error) => {
+          if (error.code === "auth/invalid-verification-code") {
+            Alert.alert("Invalid code.");
+            return;
+          }
+        });
     } catch (error) {
-      console.log("Invalid code.");
+      Alert.alert("Invalid code.");
     }
-    navigation.navigate("Home2");
-  }
-  function onAuthStateChanged(user) {
-    console.log(user)
   }
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-  useEffect(()=>{
-    RNOtpVerify.getHash()
-    .then(console.log)
-    .catch(console.log);
+    RNOtpVerify.getHash().then(console.log).catch(console.log);
 
     RNOtpVerify.getOtp()
-    .then(p => RNOtpVerify.addListener(otpHandler))
-    .catch(p => console.log(p));
-  },[])
+      .then((p) => RNOtpVerify.addListener(otpHandler))
+      .catch((p) => console.log(p));
+  }, []);
 
-  const otpHandler = (message = "000000") => {
-    const otp = /(\d{6})/g.exec(message)[1];
-    setCode( otp );
+  const otpHandler = (message) => {
+    if (message.includes("Error")) {
+      return;
+    }
+    let otp = "";
+    if (message.length > 0) {
+      otp = message.replace(/^\D+/g, "");
+    }
+    setCode(otp);
     RNOtpVerify.removeListener();
-}
+  };
+
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
@@ -62,7 +67,7 @@ function AuthPage({ navigation, route }) {
               <Text style={styles.log}>
                 Enter the 4-digit that we have sent via the
               </Text>
-              <Text>
+              <Text style={{ color: "#090A0A" }}>
                 {" "}
                 phone number{" "}
                 <Text style={{ fontWeight: "bold" }}>+62 813-8172-5977</Text>
@@ -159,7 +164,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   button: {
-    marginBottom: 90,
+    marginBottom: 60,
   },
   welcome: {
     color: "#090A0A",
@@ -176,6 +181,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginHorizontal: 24,
+    color: "#090A0A",
   },
   wrapper: {
     flex: 1,

@@ -14,40 +14,38 @@ function HomeScreen({ navigation, route }) {
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <ScrollView scrollEnabled={false} style={styles.main}>
-            <View style={styles.homeScreen}>
-              <Text style={styles.text}>
-                you
-                <Text style={styles.highlight}>learn</Text>
-              </Text>
-            </View>
-            <View style={styles.imagecontainer}>
-              <Image source={require("../assets/img/page.png")} />
-            </View>
+        <View style={styles.homeScreen}>
+          <Text style={styles.text}>
+            you
+            <Text style={styles.highlight}>learn</Text>
+          </Text>
+        </View>
+        <View style={styles.imagecontainer}>
+          <Image source={require("../assets/img/page.png")} />
+        </View>
 
-            <View style={styles.view1}>
-              <Text style={styles.text2}>
-                Create brilliant learning {"\n"} pathways
+        <View style={styles.view1}>
+          <Text style={styles.text2}>
+            Create brilliant learning {"\n"} pathways
+          </Text>
+          <Text style={styles.dot}>
+            ...<Text style={styles.highlight}>.</Text>
+          </Text>
+        </View>
+        <View style={styles.button}>
+          <NextButton onPress={NextHandler} />
+          <View style={styles.text3}>
+            <Text style={{ color: "#090A0A" }}>
+              Have an account?{" "}
+              <Text
+                style={styles.highlight}
+                onPress={() => navigation.navigate("login")}
+              >
+                Login
               </Text>
-              <Text style={styles.dot}>
-                ...<Text style={styles.highlight}>.</Text>
-              </Text>
-            </View>
-            <View style={styles.button}>
-              <NextButton onPress={NextHandler} />
-              <View style={styles.text3}>
-                <Text>
-                  Have an account?{" "}
-                  <Text
-                    style={styles.highlight}
-                    onPress={() => navigation.navigate("login")}
-                  >
-                    Login
-                  </Text>
-                </Text>
-              </View>
-            </View>
-        </ScrollView>
+            </Text>
+          </View>
+        </View>
       </SafeAreaView>
     </>
   );
@@ -60,8 +58,8 @@ const styles = StyleSheet.create({
     margin: 12,
     flex: 1,
   },
-  wrapper:{
-    flex:1
+  wrapper: {
+    flex: 1,
   },
   text: {
     color: "#090A0A",
@@ -71,7 +69,7 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif",
     fontWeight: "900",
     margin: 10,
-    paddingTop:20,
+    paddingTop: 20,
     fontWeight: "700",
     lineHeight: 36,
   },

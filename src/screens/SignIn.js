@@ -23,13 +23,14 @@ function SignIn({ navigation, route }) {
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
           Alert.alert("That email address is already in use!");
+          return;
         }
 
         if (error.code === "auth/invalid-email") {
           Alert.alert("That email address is invalid!");
         }
 
-       Alert.alert(error);
+        Alert.alert(error);
       });
   }
   return (
@@ -44,24 +45,20 @@ function SignIn({ navigation, route }) {
             <View style={styles.imagecontainer}>
               <Input>Email</Input>
               <Input>Password</Input>
-              <Input>Email</Input>
-              <Input>Password</Input>
-              <Input>Email</Input>
-              <Input>Password</Input>
             </View>
-          </View>
-
-          <View style={styles.button}>
-            <View style={styles.text3}>
-              <Text style={styles.text2}>
-                By continuing, you agree to our{" "}
-                <Text style={styles.highlight}>Terms of Service</Text> and{"\n"}
-                <Text style={styles.highlight}>Privacy Policy.</Text>
-              </Text>
-            </View>
-            <SignInButton onPress={signin}/>
           </View>
         </ScrollView>
+        <View style={styles.button}>
+          <View style={styles.text3}>
+            <Text style={styles.text2}>
+              By continuing, you agree to our{" "}
+              <Text style={styles.highlight}>Terms of Service</Text>{" "}
+              <Text>and{"\n"}</Text>
+              <Text style={styles.highlight}>Privacy Policy.</Text>
+            </Text>
+          </View>
+          <SignInButton onPress={signin} />
+        </View>
       </SafeAreaView>
     </>
   );
@@ -117,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   button: {
-    marginTop: 110,
+    marginBottom: 20,
   },
   wrapper: {
     flex: 1,

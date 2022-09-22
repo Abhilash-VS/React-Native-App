@@ -2,7 +2,6 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import * as React from "react";
 import { View, ScrollView, StyleSheet, Text, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../components/Input";
@@ -11,28 +10,43 @@ import BackButton from "../Ui/backArrow";
 import LoginButton from "../Ui/LoginButton";
 import auth from "@react-native-firebase/auth";
 
+import { emailRegex } from "../components/Regex";
+import { useState } from "react";
+
 function HomeScreen({ navigation, route }) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   function login() {
     auth()
-      .signInWithEmailAndPassword(
-        "abhilashsenapthy123@gmail.com",
-        "abhilash"
-      )
+      .signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log("User account created & signed in!");
+        setIsLoading(false);
       })
       .catch((error) => {
-        if (error.code === "auth/email-already-in-use") {
-          Alert.alert("That email address is already in use!");
+        setIsLoading(false);
+        if (error.code === "auth/user-not-found") {
+          Alert.alert("No user found");
+          return;
+        }
+        if (error.code === "auth/wrong-password") {
+          Alert.alert("The password is invalid");
+          return;
         }
 
         if (error.code === "auth/invalid-email") {
           Alert.alert("That email address is invalid!");
+          return;
         }
 
-       Alert.alert(error);
+        Alert.alert(error);
+        return;
       });
   }
+
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
@@ -43,8 +57,22 @@ function HomeScreen({ navigation, route }) {
               <Text style={styles.text}> Log in</Text>
             </View>
             <View style={styles.imagecontainer}>
-              <Input2>Email</Input2>
-              <Input>Password</Input>
+              <Input
+                onChangeText={(value) => {
+                  setEmailError(false);
+                  setEmail(value);
+                }}
+              >
+                Email
+              </Input>
+              <Input
+                onChangeText={(value) => {
+                  setPasswordError(false);
+                  setPassword(value);
+                }}
+              >
+                Password
+              </Input>
             </View>
 
             <View style={styles.view1}>
@@ -124,7 +152,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   button: {
-    marginBottom: 90,
+    marginBottom: 60,
   },
   wrapper: {
     flex: 1,

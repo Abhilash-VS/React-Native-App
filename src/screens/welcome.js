@@ -2,24 +2,40 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import * as React from "react";
 import { View, ScrollView, StyleSheet, Text, Image } from "react-native";
 import Input from "../components/Input";
 import LoginButton from "../Ui/LoginButton";
 import BackButton from "../Ui/backArrow";
 import { SafeAreaView } from "react-native-safe-area-context";
 import auth from "@react-native-firebase/auth";
+import { useState } from "react";
 
 function HomeScreen({ navigation, route }) {
+  const [phone, setPhone] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-    async function signInWithPhoneNumber(phoneNumber) {
-      const confirmation = await auth().signInWithPhoneNumber("+918157855367");
-      console.log(confirmation);
-      navigation.navigate("Authpage");
+  async function signInWithPhoneNumber() {
+    if (phone.length !== 10) {
+      setError(true);
     }
-  
-    
- 
+    setIsLoading(true);
+    if (phone.length === 10) {
+      await auth()
+        .signInWithPhoneNumber(`+91${phone}`)
+        .then((confirmation) => {
+          setIsLoading(false);
+          navigation.navigate("Authpage", confirmation);
+        })
+        .catch((err) => {
+          if (err.code === "auth/too-many-requests") {
+            Alert.alert("Something went wrong.Please try again later");
+            return;
+          }
+        });
+    }
+    setIsLoading(false);
+  }
 
   return (
     <>
@@ -32,8 +48,15 @@ function HomeScreen({ navigation, route }) {
               <Text style={styles.log}>Log in to your account</Text>
             </View>
             <View style={styles.imagecontainer}>
-              <Input keyboardType="number-pad">
-                <Text style={{ fontWeight: "400", color: "black" }}>+91 </Text>{" "}
+              <Input
+                keyboardType="number-pad"
+                onText={(value) => {
+                  setPhone(value);
+                }}
+              >
+                <Text style={{ fontWeight: "400", color: "#090A0A" }}>
+                  +91{" "}
+                </Text>{" "}
                 Mobile Number
               </Input>
             </View>
@@ -47,7 +70,7 @@ function HomeScreen({ navigation, route }) {
           </View>
         </ScrollView>
         <View style={styles.button}>
-          <LoginButton onPress={signInWithPhoneNumber} />
+          <LoginButton disabled={isLoading} onPress={signInWithPhoneNumber} />
           <View style={styles.text3}>
             <Text
               style={styles.highlight}
@@ -109,9 +132,10 @@ const styles = StyleSheet.create({
   log: {
     fontSize: 16,
     fontWeight: "400",
+    color: "#090A0A",
   },
   button: {
-    marginBottom: 90,
+    marginBottom: 60,
   },
   wrapper: {
     flex: 1,
