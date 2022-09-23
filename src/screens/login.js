@@ -58,6 +58,7 @@ function HomeScreen({ navigation, route }) {
             </View>
             <View style={styles.imagecontainer}>
               <Input
+              keyBoardtype={"email-address"}
                 onChangeText={(value) => {
                   setEmailError(false);
                   setEmail(value);
@@ -66,6 +67,7 @@ function HomeScreen({ navigation, route }) {
                 Email
               </Input>
               <Input
+              keyBoardtype={"password"}
                 onChangeText={(value) => {
                   setPasswordError(false);
                   setPassword(value);

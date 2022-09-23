@@ -49,7 +49,7 @@ function HomeScreen({ navigation, route }) {
             </View>
             <View style={styles.imagecontainer}>
               <Input
-                keyboardType="number-pad"
+                keyBoardtype="number-pad"
                 onText={(value) => {
                   setPhone(value);
                 }}
