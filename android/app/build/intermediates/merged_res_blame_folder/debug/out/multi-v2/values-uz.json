@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.loginapp-mergeDebugResources-33:/values-uz/values-uz.xml",
+            "outputFile": "com.loginapp-mergeDebugResources-38:/values-uz/values-uz.xml",
             "map": [
                 {
                     "source": "/home/abhilash/.gradle/caches/transforms-3/0647204d58c048d1dd06350cd74722f3/transformed/core-1.7.0/res/values-uz/values-uz.xml",

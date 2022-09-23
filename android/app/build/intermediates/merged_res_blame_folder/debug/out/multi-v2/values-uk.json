@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.loginapp-mergeDebugResources-33:/values-uk/values-uk.xml",
+            "outputFile": "com.loginapp-mergeDebugResources-38:/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "/home/abhilash/.gradle/caches/transforms-3/47b0a75a35b9d53b43a810f4bc8a2582/transformed/jetified-play-services-basement-18.1.0/res/values-uk/values.xml",

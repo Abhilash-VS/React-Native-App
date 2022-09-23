@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.loginapp-mergeDebugResources-33:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.loginapp-mergeDebugResources-38:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "/home/abhilash/.gradle/caches/transforms-3/f1af0dac56fe1ec775e4cee70f60ad03/transformed/browser-1.4.0/res/values-en-rAU/values-en-rAU.xml",

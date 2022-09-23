@@ -7,16 +7,18 @@ import { View, StyleSheet, Text, Image, Button, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NextButton from "../Ui/NextButton";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { LoginManager, AccessToken } from "react-native-fbsdk-next";
 import auth from "@react-native-firebase/auth";
 
 function HomeScreen({ navigation, route }) {
   GoogleSignin.configure({
     webClientId:
-      "912166501685-m30ns7q2urq90fnlu9mrasag4n14g2dl.apps.googleusercontent.com",
+      "912166501685-m30ns7q2urq90fnlu9mrasag4n14g2dl.apps.googleusercontent.com"
   });
   async function onGoogleButtonPress() {
     // Get the users ID token
     const { idToken } = await GoogleSignin.signIn();
+    await GoogleSignin.signOut();
 
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
@@ -29,6 +31,32 @@ function HomeScreen({ navigation, route }) {
     }).catch((error) => {
       console.log(error);
     });
+  }
+  async function onFacebookButtonPress() {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      "public_profile",
+      "email",
+    ]);
+
+    if (result.isCancelled) {
+      throw "User cancelled the login process";
+    }
+
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw "Something went wrong obtaining access token";
+    }
+
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken
+    );
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
   }
   function NextHandler() {
     navigation.navigate("welcome");
@@ -66,7 +94,7 @@ function HomeScreen({ navigation, route }) {
                 Login
               </Text>
             </Text>
-            <Text  style={{ color: "#090A0A" }}>Or</Text>
+            <Text style={{ color: "#090A0A" }}>Or</Text>
             <View style={styles.google}>
               <View style={styles.cardConatiner}>
                 <Pressable onPress={onGoogleButtonPress}>
@@ -77,7 +105,7 @@ function HomeScreen({ navigation, route }) {
                 </Pressable>
               </View>
               <View style={styles.cardConatiner}>
-                <Pressable >
+                <Pressable onPress={onFacebookButtonPress}>
                   <Image
                     source={require("../assets/img/facebook.png")}
                     style={styles.sociall}

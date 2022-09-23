@@ -23,6 +23,7 @@
     "npm": "^8.19.2",
     "react": "18.1.0",
     "react-native": "0.70.1",
+    "react-native-fbsdk-next": "^10.1.0",
     "react-native-gesture-handler": "^2.6.1",
     "react-native-image-picker": "^4.10.0",
     "react-native-otp-verify": "^1.0.5",
