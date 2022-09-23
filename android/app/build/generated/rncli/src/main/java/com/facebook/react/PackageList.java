@@ -17,6 +17,8 @@ import com.reactnativecommunity.clipboard.ClipboardPackage;
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 // @react-native-firebase/auth
 import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
+// @react-native-google-signin/google-signin
+import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-image-picker
@@ -77,6 +79,7 @@ public class PackageList {
       new ClipboardPackage(),
       new ReactNativeFirebaseAppPackage(),
       new ReactNativeFirebaseAuthPackage(),
+      new RNGoogleSigninPackage(),
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
       new RNOtpVerifyPackage(),

@@ -3,11 +3,33 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
 import * as React from "react";
-import { View, ScrollView, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, Button, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NextButton from "../Ui/NextButton";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import auth from "@react-native-firebase/auth";
 
 function HomeScreen({ navigation, route }) {
+  GoogleSignin.configure({
+    webClientId:
+      "912166501685-m30ns7q2urq90fnlu9mrasag4n14g2dl.apps.googleusercontent.com",
+  });
+  async function onGoogleButtonPress() {
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    const user_sigin_in = auth().signInWithCredential(googleCredential);
+
+    user_sigin_in((user) => {
+      console.log(user);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
   function NextHandler() {
     navigation.navigate("welcome");
   }
@@ -44,6 +66,25 @@ function HomeScreen({ navigation, route }) {
                 Login
               </Text>
             </Text>
+            <Text  style={{ color: "#090A0A" }}>Or</Text>
+            <View style={styles.google}>
+              <View style={styles.cardConatiner}>
+                <Pressable onPress={onGoogleButtonPress}>
+                  <Image
+                    source={require("../assets/img/google.png")}
+                    style={styles.sociall}
+                  />
+                </Pressable>
+              </View>
+              <View style={styles.cardConatiner}>
+                <Pressable >
+                  <Image
+                    source={require("../assets/img/facebook.png")}
+                    style={styles.sociall}
+                  />
+                </Pressable>
+              </View>
+            </View>
           </View>
         </View>
       </SafeAreaView>
@@ -56,7 +97,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   homeScreen: {
     margin: 12,
-    flex: 1,
+    maxHeight: "50%",
   },
   wrapper: {
     flex: 1,
@@ -67,15 +108,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontSize: 24,
     fontFamily: "sans-serif",
-    fontWeight: "900",
     margin: 10,
     paddingTop: 20,
     fontWeight: "700",
-    lineHeight: 36,
+    lineHeight: 32,
   },
   imagecontainer: {
     alignItems: "center",
-    marginVertical: 40,
+    marginVertical: 20,
   },
   text2: {
     color: "#090A0A",
@@ -106,5 +146,21 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 114,
+  },
+  google: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  cardConatiner: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 10,
+    flex: 1,
+  },
+  sociall: {
+    maxHeight: 50,
+    maxWidth: 50,
+    resizeMode: "contain",
   },
 });

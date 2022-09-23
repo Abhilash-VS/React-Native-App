@@ -11,7 +11,7 @@ import auth from "@react-native-firebase/auth";
 import { useState } from "react";
 
 function HomeScreen({ navigation, route }) {
-  const [phone, setPhone] = useState();
+  const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -143,3 +143,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
