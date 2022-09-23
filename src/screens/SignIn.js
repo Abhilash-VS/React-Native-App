@@ -2,37 +2,43 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import * as React from "react";
-import { View, ScrollView, StyleSheet, Text, Alert } from "react-native";
+import { View, ScrollView, StyleSheet, Text, Alert, LogBox } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../components/Input";
 import BackButton from "../Ui/backArrow";
 import SignInButton from "../Ui/SignInButton";
 import auth from "@react-native-firebase/auth";
+import { useState } from "react";
 
 function SignIn({ navigation, route }) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   function signin() {
-    auth()
-      .createUserWithEmailAndPassword(
-        "abhilashsenapthy123@gmail.com",
-        "abhilash"
-      )
-      .then(() => {
-        Alert.alert("User account created & signed in!");
-      })
-      .catch((error) => {
-        if (error.code === "auth/email-already-in-use") {
-          Alert.alert("That email address is already in use!");
-          return;
-        }
+    if (email && password) {
+      auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          navigation.navigate("Home2");
+          Alert.alert("User account created & signed in!");
+        })
+        .catch((error) => {
+          if (error.code === "auth/email-already-in-use") {
+            Alert.alert("That email address is already in use!");
+            return;
+          }
 
-        if (error.code === "auth/invalid-email") {
-          Alert.alert("That email address is invalid!");
-        }
+          if (error.code === "auth/invalid-email") {
+            Alert.alert("That email address is invalid!");
+            return;
+          }
 
-        Alert.alert(error);
-      });
+          Alert.alert(error);
+        });
+    }
   }
+  LogBox.ignoreLogs([
+    "Non-serializable values were found in the navigation state",
+  ]);
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
@@ -43,8 +49,8 @@ function SignIn({ navigation, route }) {
               <Text style={styles.text}> Sign In</Text>
             </View>
             <View style={styles.imagecontainer}>
-              <Input>Email</Input>
-              <Input>Password</Input>
+              <Input onText={(value) => setEmail(value)}>Email</Input>
+              <Input onText={(value) => setPassword(value)}>Password</Input>
             </View>
           </View>
         </ScrollView>

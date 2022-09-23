@@ -16,15 +16,19 @@ import { useState } from "react";
 function HomeScreen({ navigation, route }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading]=useState();
 
   function login() {
+    console.log(email)
+    if(email&&password){
+      console.log('loged')
+
+    
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         setIsLoading(false);
+        navigation.navigate("Home2")
       })
       .catch((error) => {
         setIsLoading(false);
@@ -45,6 +49,7 @@ function HomeScreen({ navigation, route }) {
         Alert.alert(error);
         return;
       });
+    }
   }
 
   return (
@@ -58,19 +63,17 @@ function HomeScreen({ navigation, route }) {
             </View>
             <View style={styles.imagecontainer}>
               <Input
-              keyBoardtype={"email-address"}
-                onChangeText={(value) => {
-                  setEmailError(false);
-                  setEmail(value);
+                keyBoardtype={"email-address"}
+                onText={(value) => {
+                 setEmail(value)
                 }}
               >
                 Email
               </Input>
               <Input
-              keyBoardtype={"password"}
-                onChangeText={(value) => {
-                  setPasswordError(false);
-                  setPassword(value);
+                keyBoardtype={"password"}
+                onText={(value) => {
+                setPassword(value)
                 }}
               >
                 Password

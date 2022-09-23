@@ -2,12 +2,18 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import { View, ScrollView, StyleSheet, Text, Alert } from "react-native";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  Alert,
+  LogBox,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import RoundInput from "../components/RoundInput";
 import BackButton from "../Ui/backArrow";
 import ContinueButton from "../Ui/ContinueButton";
-import LoginButton from "../Ui/LoginButton";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { useEffect, useState } from "react";
 import auth from "@react-native-firebase/auth";
@@ -52,7 +58,9 @@ function AuthPage({ navigation, route }) {
     setCode(otp);
     RNOtpVerify.removeListener();
   };
-
+  LogBox.ignoreLogs([
+    "Non-serializable values were found in the navigation state",
+  ]);
   return (
     <>
       <SafeAreaView style={styles.wrapper}>

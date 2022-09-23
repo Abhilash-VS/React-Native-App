@@ -27,8 +27,8 @@ function HomeScreen({ navigation, route }) {
           setIsLoading(false);
           navigation.navigate("Authpage", confirmation);
         })
-        .catch((err) => {
-          if (err.code === "auth/too-many-requests") {
+        .catch((error) => {
+          if (error.code === "auth/too-many-requests") {
             Alert.alert("Something went wrong.Please try again later");
             return;
           }
@@ -50,8 +50,10 @@ function HomeScreen({ navigation, route }) {
             <View style={styles.imagecontainer}>
               <Input
                 keyBoardtype="number-pad"
+                isvalid={error}
                 onText={(value) => {
-                  setPhone(value);
+                  setError(false)
+                  setPhone(value)
                 }}
               >
                 <Text style={{ fontWeight: "400", color: "#090A0A" }}>
