@@ -18,7 +18,7 @@ function SignIn({ navigation, route }) {
       auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
-          navigation.navigate("Home2");
+          navigation.navigate("PracticeArea");
           Alert.alert("User account created & signed in!");
         })
         .catch((error) => {

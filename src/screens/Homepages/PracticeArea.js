@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 
-const Home2 = () => {
+const PracticeArea = () => {
   return (
     <>
       <View>
@@ -12,7 +12,7 @@ const Home2 = () => {
   );
 };
 
-export default Home2;
+export default PracticeArea;
 
 const styles = StyleSheet.create({
   homeScreen: {

@@ -13,7 +13,7 @@ import auth from "@react-native-firebase/auth";
 function HomeScreen({ navigation, route }) {
   GoogleSignin.configure({
     webClientId:
-      "912166501685-m30ns7q2urq90fnlu9mrasag4n14g2dl.apps.googleusercontent.com"
+    "912166501685-m30ns7q2urq90fnlu9mrasag4n14g2dl.apps.googleusercontent.com"
   });
   async function onGoogleButtonPress() {
     // Get the users ID token
@@ -24,13 +24,14 @@ function HomeScreen({ navigation, route }) {
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
     // Sign-in the user with the credential
-    const user_sigin_in = auth().signInWithCredential(googleCredential);
-
-    user_sigin_in((user) => {
-      console.log(user);
-    }).catch((error) => {
-      console.log(error);
-    });
+    console.log("before")
+    await auth().signInWithCredential(googleCredential).then((user)=>{
+      navigation.navigate("PracticeArea")
+      console.log(user)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
   }
   async function onFacebookButtonPress() {
     // Attempt login with permissions
@@ -56,7 +57,13 @@ function HomeScreen({ navigation, route }) {
     );
 
     // Sign-in the user with the credential
-    return auth().signInWithCredential(facebookCredential);
+    await auth().signInWithCredential(facebookCredential).then((user)=>{
+      navigation.navigate("PracticeArea")
+      console.log(user)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
   }
   function NextHandler() {
     navigation.navigate("welcome");

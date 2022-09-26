@@ -2,7 +2,7 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-undef */
-import { View, ScrollView, StyleSheet, Text, Image } from "react-native";
+import { View, ScrollView, StyleSheet, Text, Image, Alert } from "react-native";
 import Input from "../components/Input";
 import LoginButton from "../Ui/LoginButton";
 import BackButton from "../Ui/backArrow";
@@ -28,6 +28,7 @@ function HomeScreen({ navigation, route }) {
           navigation.navigate("Authpage", confirmation);
         })
         .catch((error) => {
+          console.log(error)
           if (error.code === "auth/too-many-requests") {
             Alert.alert("Something went wrong.Please try again later");
             return;

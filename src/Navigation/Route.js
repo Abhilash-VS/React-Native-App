@@ -7,7 +7,7 @@ import login from "../screens/login";
 import GetStarted from "../screens/GetStarted";
 import SignIn from "../screens/SignIn";
 import AuthPage from "../screens/AuthPage";
-import Home2 from "../screens/Practice Area";
+import PracticeArea from "../screens/Homepages/PracticeArea";
 const Stack = createNativeStackNavigator();
 
 function Route() {
@@ -46,8 +46,8 @@ function Route() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="Home2"
-            component={Home2}
+            name="PracticeArea"
+            component={PracticeArea}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

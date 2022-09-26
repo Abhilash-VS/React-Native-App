@@ -27,7 +27,7 @@ function AuthPage({ navigation, route }) {
     try {
       await confirm
         .confirm(code)
-        .then((result) => navigation.navigate("Home2"))
+        .then((result) => navigation.navigate("PracticeArea"))
         .catch((error) => {
           if (error.code === "auth/invalid-verification-code") {
             Alert.alert("Invalid code.");
