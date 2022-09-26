@@ -28,7 +28,7 @@ function HomeScreen({ navigation, route }) {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         setIsLoading(false);
-        navigation.navigate("Home2")
+        navigation.navigate("PracticeArea")
       })
       .catch((error) => {
         setIsLoading(false);
@@ -93,7 +93,7 @@ function HomeScreen({ navigation, route }) {
               <Text style={styles.highlight}>Privacy Policy.</Text>
             </Text>
           </View>
-          <LoginButton onPress={login} />
+          <LoginButton onPress={login} >Log in</LoginButton>
         </View>
       </SafeAreaView>
     </>

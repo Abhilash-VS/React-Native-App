@@ -1,13 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Pressable, StyleSheet, Text, View } from "react-native";
-function LoginButton({ onPress }) {
+function LoginButton({ onPress,children }) {
   return (
     <Pressable
       style={({ pressed }) => [pressed && styles.pressed]}
       onPress={onPress}
     >
       <View style={styles.buttonContainer}>
-        <Text style={styles.buttontext}>Log in</Text>
+        <Text style={styles.buttontext}>{children}</Text>
       </View>
     </Pressable>
   );

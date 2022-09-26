@@ -73,7 +73,7 @@ function HomeScreen({ navigation, route }) {
           </View>
         </ScrollView>
         <View style={styles.button}>
-          <LoginButton disabled={isLoading} onPress={signInWithPhoneNumber} />
+          <LoginButton disabled={isLoading} onPress={signInWithPhoneNumber}>Log in</LoginButton>
           <View style={styles.text3}>
             <Text
               style={styles.highlight}

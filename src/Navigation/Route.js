@@ -8,6 +8,8 @@ import GetStarted from "../screens/GetStarted";
 import SignIn from "../screens/SignIn";
 import AuthPage from "../screens/AuthPage";
 import PracticeArea from "../screens/Homepages/PracticeArea";
+import TellYourGoal from "../screens/Homepages/Yourgoal";
+import AboutYou from "../screens/Homepages/AboutYou";
 const Stack = createNativeStackNavigator();
 
 function Route() {
@@ -48,6 +50,16 @@ function Route() {
           <Stack.Screen
             name="PracticeArea"
             component={PracticeArea}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TellYourGoal"
+            component={TellYourGoal}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="AboutYou"
+            component={AboutYou}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
