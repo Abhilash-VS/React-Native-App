@@ -6,7 +6,7 @@ import QustionTab from "../../components/QustionTab";
 import LoginButton from "../../Ui/LoginButton";
 
 const TellYourGoal = ({ navigation }) => {
-  const [tab, setTab] = useState("None");
+  const [tab, setTab] = useState("goal-1");
 
   function tabActive(name) {
     setTab(name);

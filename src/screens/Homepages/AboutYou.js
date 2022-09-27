@@ -6,6 +6,9 @@ import BackButton from "../../Ui/backArrow";
 import LoginButton from "../../Ui/LoginButton";
 
 const AboutYou = ({navigation}) => {
+  function NextHandler() {
+    navigation.navigate("Location");
+  }
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
@@ -25,7 +28,7 @@ const AboutYou = ({navigation}) => {
           </View>
         </ScrollView>
         <View style={styles.button}>
-          <LoginButton>Continue</LoginButton>
+          <LoginButton onPress={NextHandler}>Continue</LoginButton>
         </View>
       </SafeAreaView>
     </>

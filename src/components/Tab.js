@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, View ,Text} from "react-native";
+import { Pressable, StyleSheet, View, Text } from "react-native";
 function Tab({ name, tabActive, color, children }) {
   return (
     <Pressable
@@ -8,7 +8,11 @@ function Tab({ name, tabActive, color, children }) {
       onPress={() => tabActive(name)}
     >
       <View style={[styles.tab, { backgroundColor: color }]}>
-        <Text name={name} size={46} color={color}>
+        <Text
+          name={name}
+          size={46}
+          style={[styles.text, { backgroundColor: color }]}
+        >
           {children}
         </Text>
       </View>
@@ -23,7 +27,7 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     height: 50,
-    width: '90%',
+    width: "90%",
     borderRadius: 8,
     paddingVertical: 5,
     marginVertical: 10,
@@ -33,14 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     overflow: "hidden",
   },
-  // height: 45,
-  //   backgroundColor: "#e2e7e9",
-  //   marginTop: 5,
-  //   borderRadius: 8,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   flexDirection: "row",
-  //   fontFamily: "notoserif",
-  //   marginBottom: 10,
-  //   marginHorizontal: 24,
+  text: {
+    color: "#090A0A",
+  },
 });

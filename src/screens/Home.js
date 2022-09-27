@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     maxHeight: "50%",
   },
   wrapper: {
-    flex: 1,
+    flex: 2,
   },
   text: {
     color: "#090A0A",
@@ -150,7 +150,6 @@ const styles = StyleSheet.create({
   },
   imagecontainer: {
     alignItems: "center",
-    marginVertical: 20,
   },
   text2: {
     color: "#090A0A",
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   view1: {
-    marginBottom: 20,
+    marginBottom: 0,
     justifyContent: "center",
     alignItems: "center",
   },

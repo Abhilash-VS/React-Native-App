@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, View ,Text} from "react-native";
-function QustionTab({ name, tabActive, color, children,onPress}) {
+import { Pressable, StyleSheet, View, Text } from "react-native";
+function QustionTab({ name, tabActive, color, children, onPress }) {
   return (
     <Pressable
       style={styles.screen}
@@ -8,7 +8,13 @@ function QustionTab({ name, tabActive, color, children,onPress}) {
       onPress={() => tabActive(name)}
     >
       <View style={[styles.tab, { backgroundColor: color }]}>
-        <Text name={name} size={46} color={color} onPress={onPress}>
+        <Text
+          name={name}
+          size={46}
+          color={color}
+          onPress={onPress}
+          style={[styles.text, { backgroundColor: color }]}
+        >
           {children}
         </Text>
       </View>
@@ -23,25 +29,18 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     height: 50,
-    width: '90%',
+    width: "90%",
     borderRadius: 48,
     paddingVertical: 5,
     marginVertical: 10,
     marginHorizontal: 24,
     backgroundColor: "#F2F4F5",
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    paddingLeft:20,
+    alignItems: "flex-start",
+    justifyContent: "center",
+    paddingLeft: 20,
     overflow: "hidden",
   },
-  // height: 45,
-  //   backgroundColor: "#e2e7e9",
-  //   marginTop: 5,
-  //   borderRadius: 8,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   flexDirection: "row",
-  //   fontFamily: "notoserif",
-  //   marginBottom: 10,
-  //   marginHorizontal: 24,
+  text: {
+    color: "#090A0A",
+  },
 });

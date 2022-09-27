@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Tab from "../../components/Tab";
@@ -24,10 +24,12 @@ const PracticeArea = ({ navigation }) => {
             <Text style={styles.dot}>
               ..<Text style={styles.highlight}>.</Text>
             </Text>
-            <Text style={styles.text} onPress={NextHandler}>
-              {" "}
-              Skip
-            </Text>
+            <Pressable android_ripple={{ color: "#e3e4e8" }}>
+              <Text style={styles.text} onPress={NextHandler}>
+                {" "}
+                Skip
+              </Text>
+            </Pressable>
           </View>
           <View style={styles.homeScreen2}>
             <Text style={styles.welcome}>Practice Area</Text>
